@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VS Code Clone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h3>EXPLORER</h3>
+      <ul>
+        <li onclick="openTab('index')">index.html</li>
+        <li onclick="openTab('style')">style.css</li>
+        <li onclick="openTab('script')">script.js</li>
+      </ul>
+      <button onclick="runCode()" class="run-btn">Run ▶</button>
+    </aside>
+
+    <main class="main">
+      <div class="tabs">
+        <button onclick="openTab('index')">index.html</button>
+        <button onclick="openTab('style')">style.css</button>
+        <button onclick="openTab('script')">script.js</button>
+      </div>
+
+      <div class="editor">
+        <textarea id="index" class="file"><!DOCTYPE html>
+<html>
+<head>
+  <title>Hello</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Hello world!</h1>
+  <script src="script.js"></script>
+</body>
+</html></textarea>
