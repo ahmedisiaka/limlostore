@@ -1,39 +1,1012 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VS Code Clone</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    <aside class="sidebar">
-      <h3>EXPLORER</h3>
-      <ul>
-        <li onclick="openTab('index')">index.html</li>
-        <li onclick="openTab('style')">style.css</li>
-        <li onclick="openTab('script')">script.js</li>
-      </ul>
-      <button onclick="runCode()" class="run-btn">Run ▶</button>
-    </aside>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Limlo - Your ABU Campus Companion</title>
+        <link rel="icon" href="icon.png" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            }
 
-    <main class="main">
-      <div class="tabs">
-        <button onclick="openTab('index')">index.html</button>
-        <button onclick="openTab('style')">style.css</button>
-        <button onclick="openTab('script')">script.js</button>
-      </div>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                overflow-x: hidden;
+                background: #0a0a0a;
+                color: #ffffff;
+            }
 
-      <div class="editor">
-        <textarea id="index" class="file"><!DOCTYPE html>
-<html>
-<head>
-  <title>Hello</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Hello world!</h1>
-  <script src="script.js"></script>
-</body>
-</html></textarea>
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(135deg, #047857 0%, #065f46 50%, #064e3b 100%);
+            }
+
+            .animated-bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+            }
+
+            .orb {
+                position: absolute;
+                border-radius: 50%;
+                filter: blur(80px);
+                opacity: 0.4;
+                animation: float 20s infinite ease-in-out;
+            }
+
+            .orb1 { width: 600px; height: 600px; background: linear-gradient(45deg, #10b981 0%, #34d399 100%); top: -15%; left: -15%; }
+            .orb2 { width: 500px; height: 500px; background: linear-gradient(45deg, #059669 0%, #10b981 100%); bottom: -15%; right: -15%; animation-delay: -5s; }
+            .orb3 { width: 400px; height: 400px; background: linear-gradient(45deg, #6ee7b7 0%, #34d399 100%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -10s; }
+
+            @keyframes float {
+                0%, 100% { transform: translate(0, 0) scale(1); }
+                33% { transform: translate(40px, -60px) scale(1.1); }
+                66% { transform: translate(-30px, 30px) scale(0.9); }
+            }
+
+            /* Animations */
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            @keyframes logoFloat {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-12px); }
+            }
+
+            @keyframes bounceIn {
+                0% { opacity: 0; transform: scale(0.3); }
+                50% { opacity: 1; transform: scale(1.05); }
+                70% { transform: scale(0.9); }
+                100% { transform: scale(1); }
+            }
+
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+                50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            }
+
+            @keyframes crazyShake {
+                0%, 100% { transform: translateX(0) rotate(0deg); }
+                10% { transform: translateX(-5px) rotate(-3deg); }
+                20% { transform: translateX(5px) rotate(3deg); }
+                30% { transform: translateX(-5px) rotate(-3deg); }
+                40% { transform: translateX(5px) rotate(3deg); }
+                50% { transform: translateX(-5px) rotate(-3deg); }
+                60% { transform: translateX(5px) rotate(3deg); }
+                70% { transform: translateX(-5px) rotate(-3deg); }
+                80% { transform: translateX(5px) rotate(3deg); }
+                90% { transform: translateX(-5px) rotate(-3deg); }
+            }
+
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+
+            @keyframes glow {
+                0%, 100% { 
+                    box-shadow: 
+                        0 0 20px rgba(16, 185, 129, 0.8),
+                        0 0 40px rgba(16, 185, 129, 0.6),
+                        0 0 60px rgba(16, 185, 129, 0.4),
+                        inset 0 0 20px rgba(16, 185, 129, 0.2);
+                }
+                50% { 
+                    box-shadow: 
+                        0 0 30px rgba(16, 185, 129, 1),
+                        0 0 60px rgba(16, 185, 129, 0.8),
+                        0 0 90px rgba(16, 185, 129, 0.6),
+                        inset 0 0 30px rgba(16, 185, 129, 0.4);
+                }
+            }
+
+            @keyframes wiggle {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: rotate(5deg); }
+                75% { transform: rotate(-5deg); }
+            }
+
+            @keyframes expandShrink {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.15); }
+            }
+
+            @keyframes sparkle {
+                0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1) rotate(180deg); }
+            }
+
+            .content {
+                position: relative;
+                z-index: 10;
+                text-align: center;
+                padding: 40px 20px;
+                max-width: 900px;
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 30px;
+                animation: fadeInUp 1.6s ease-out;
+            }
+
+            .logo {
+                width: 70px;
+                height: 70px;
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                animation: logoFloat 3s ease-in-out infinite;
+            }
+
+            .brand-name {
+                font-size: 2.5rem;
+                font-weight: 800;
+                color: #ffffff;
+            }
+#logog {
+    border-radius: 15px; /* Or 50% for a circle */
+}
+
+
+            h1 {
+                font-size: clamp(2.2rem, 7vw, 4.5rem);
+                font-weight: 800;
+                margin-bottom: 20px;
+                line-height: 1.2;
+                animation: fadeInUp 1.6s ease-out 0.3s backwards;
+            }
+
+            .tagline {
+                font-size: clamp(1.1rem, 3vw, 1.4rem);
+                margin-bottom: 40px;
+                opacity: 0.95;
+                animation: fadeInUp 1.6s ease-out 0.6s backwards;
+            }
+
+            .download-section {
+                animation: fadeInUp 1.6s ease-out 0.9s backwards;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            /* --- Version Toggle Switch --- */
+            .version-toggle {
+                display: flex;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 50px;
+                padding: 5px;
+                position: relative;
+                width: 100%;
+                margin-bottom: 10px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .toggle-btn {
+                flex: 1;
+                text-align: center;
+                padding: 12px 0;
+                font-size: 1rem;
+                font-weight: 700;
+                color: #fff;
+                cursor: pointer;
+                border-radius: 40px;
+                transition: background 0.3s ease, color 0.3s ease;
+                background: transparent;
+                border: none;
+            }
+
+            .toggle-btn.active {
+                background: #ffffff;
+                color: #047857;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
+
+            /* --- What's New Button --- */
+            .whats-new-btn {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                padding: 16px 32px;
+                font-size: 1.1rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #10b981 0%, #059669 50%, #34d399 100%);
+                color: #ffffff;
+                border: 3px solid rgba(255, 255, 255, 0.3);
+                border-radius: 50px;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .whats-new-btn.show {
+                display: flex;
+                animation: 
+                    bounceIn 0.8s ease-out,
+                    crazyShake 3s ease-in-out 2s infinite,
+                    glow 2s ease-in-out infinite,
+                    rainbow 6s linear infinite;
+            }
+
+            .whats-new-btn:hover {
+                animation: 
+                    wiggle 0.3s ease-in-out infinite,
+                    glow 1s ease-in-out infinite,
+                    rainbow 3s linear infinite,
+                    expandShrink 0.6s ease-in-out infinite !important;
+            }
+
+            .whats-new-btn:active {
+                transform: scale(0.95) rotate(2deg);
+            }
+
+            /* Sparkles around button */
+            .whats-new-btn::before,
+            .whats-new-btn::after {
+                content: '✨';
+                position: absolute;
+                font-size: 1.5rem;
+                animation: sparkle 1.5s ease-in-out infinite;
+            }
+
+            .whats-new-btn::before {
+                top: -10px;
+                left: -10px;
+                animation-delay: 0s;
+            }
+
+            .whats-new-btn::after {
+                bottom: -10px;
+                right: -10px;
+                animation-delay: 0.75s;
+            }
+
+            /* Shiny overlay effect */
+            .whats-new-btn .shine {
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                animation: shine 3s infinite;
+            }
+
+            @keyframes shine {
+                0% { left: -100%; }
+                50%, 100% { left: 100%; }
+            }
+
+            /* Icon rotation */
+            .whats-new-btn svg {
+                animation: spin 4s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .whats-new-btn:hover svg {
+                animation: spin 0.5s linear infinite;
+            }
+
+            /* Floating emojis around button */
+            .emoji-float {
+                position: absolute;
+                font-size: 1.5rem;
+                pointer-events: none;
+                animation: floatEmoji 3s ease-in-out infinite;
+                z-index: 1;
+            }
+
+            @keyframes floatEmoji {
+                0%, 100% { 
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% { 
+                    transform: translateY(-20px) rotate(360deg);
+                    opacity: 0.7;
+                }
+            }
+
+            .emoji-1 { top: -15px; left: 10%; animation-delay: 0s; }
+            .emoji-2 { top: -15px; right: 10%; animation-delay: 0.5s; }
+            .emoji-3 { bottom: -15px; left: 15%; animation-delay: 1s; }
+            .emoji-4 { bottom: -15px; right: 15%; animation-delay: 1.5s; }
+            .emoji-5 { top: 50%; left: -20px; transform: translateY(-50%); animation-delay: 0.25s; }
+            .emoji-6 { top: 50%; right: -20px; transform: translateY(-50%); animation-delay: 0.75s; }
+
+            /* Button wrapper for container */
+            .whats-new-wrapper {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Confetti particles */
+            @keyframes confetti-fall {
+                0% { 
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% { 
+                    transform: translateY(100px) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+
+            .confetti {
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 999;
+            }
+
+            /* Neon glow text effect */
+            @keyframes neon-glow {
+                0%, 100% {
+                    text-shadow: 
+                        0 0 10px #fff,
+                        0 0 20px #fff,
+                        0 0 30px #10b981,
+                        0 0 40px #10b981;
+                }
+                50% {
+                    text-shadow: 
+                        0 0 5px #fff,
+                        0 0 10px #fff,
+                        0 0 15px #10b981,
+                        0 0 20px #10b981,
+                        0 0 30px #10b981;
+                }
+            }
+
+            .whats-new-btn:hover span:last-child {
+                animation: neon-glow 1s ease-in-out infinite;
+            }
+
+            /* --- Buttons Layout --- */
+            .button-container {
+                display: none; /* Hidden by default */
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                animation: fadeInUp 0.5s ease-out;
+            }
+
+            .button-container.active {
+                display: flex;
+            }
+
+            .download-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                padding: 18px 30px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                text-decoration: none;
+                border-radius: 50px;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                cursor: pointer;
+                border: none;
+                width: 100%;
+            }
+
+            .download-btn:active { transform: scale(0.98); }
+
+            /* Styles specific to button types */
+            .btn-android {
+                background: #ffffff;
+                color: #047857;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            }
+            .btn-android:hover { background: #f0fdf4; }
+
+            .btn-other {
+                background: rgba(255, 255, 255, 0.15);
+                color: #fff;
+                border: 1px solid rgba(255,255,255,0.2);
+            }
+            .btn-other:hover { background: rgba(255, 255, 255, 0.25); }
+
+
+            .features {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+                margin-top: 70px;
+                animation: fadeInUp 1.6s ease-out 1.2s backwards;
+            }
+
+            .feature {
+                padding: 30px 25px;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transition: transform 0.4s ease;
+            }
+
+            .feature:hover { transform: translateY(-10px); }
+
+            .feature-icon { width: 48px; height: 48px; margin: 0 auto 15px; fill: #ffffff; }
+            .feature h3 { font-size: 1.3rem; margin-bottom: 12px; }
+            .feature p { font-size: 0.95rem; opacity: 0.85; line-height: 1.6; }
+
+            .footer {
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(10px);
+                padding: 50px 20px 30px;
+                position: relative;
+                z-index: 10;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .footer-content {
+                max-width: 900px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 40px;
+            }
+
+            .contact-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 12px;
+                color: rgba(255, 255, 255, 0.9);
+                text-decoration: none;
+                font-size: 1rem;
+                transition: color 0.3s ease;
+            }
+
+            .contact-item:hover { color: #10b981; }
+
+            .whatsapp-icon { fill: #25D366; width: 28px; height: 28px; }
+            .email-icon { fill: #ffffff; width: 24px; height: 24px; opacity: 0.9; }
+
+            .particles {
+                position: absolute;
+                top: 0; left: 0; width: 100%; height: 100%;
+                pointer-events: none;
+            }
+
+            .particle {
+                position: absolute;
+                width: 3px; height: 3px;
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 50%;
+                animation: rise 15s infinite ease-in;
+            }
+
+            @keyframes rise {
+                0% { bottom: -10px; opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { bottom: 100%; opacity: 0; }
+            }
+
+            /* Toast Notification Style */
+            #toast {
+                visibility: hidden;
+                min-width: 250px;
+                margin-left: -125px;
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                border-radius: 50px;
+                padding: 16px;
+                position: fixed;
+                z-index: 1000;
+                left: 50%;
+                bottom: 30px;
+                font-size: 17px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+                border: 1px solid rgba(255,255,255,0.1);
+                opacity: 0;
+                transition: opacity 0.3s, bottom 0.3s, visibility 0.3s;
+            }
+
+            #toast.show {
+                visibility: visible;
+                opacity: 1;
+                bottom: 50px;
+            }
+
+            /* Modal Styles */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 2000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(10px);
+                animation: fadeIn 0.3s ease-out;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            .modal-content {
+                background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+                margin: 5% auto;
+                padding: 0;
+                border-radius: 20px;
+                max-width: 700px;
+                width: 90%;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+                animation: slideDown 0.4s ease-out;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            @keyframes slideDown {
+                from { transform: translateY(-50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+
+            .modal-header {
+                padding: 30px 30px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                position: relative;
+            }
+
+            .modal-header h2 {
+                font-size: 1.8rem;
+                font-weight: 800;
+                color: #ffffff;
+                margin-bottom: 5px;
+            }
+
+            .modal-header p {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 1rem;
+            }
+
+            .close {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                color: #ffffff;
+                font-size: 32px;
+                font-weight: bold;
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+
+            .close:hover,
+            .close:focus {
+                background: rgba(255, 255, 255, 0.2);
+                transform: rotate(90deg);
+            }
+
+            .modal-body {
+                padding: 30px;
+                max-height: 60vh;
+                overflow-y: auto;
+                color: #ffffff;
+            }
+
+            .modal-body::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .modal-body::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+
+            .modal-body::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 10px;
+            }
+
+            .modal-body::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.4);
+            }
+
+            .changelog-section {
+                margin-bottom: 30px;
+            }
+
+            .changelog-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .feature-item {
+                margin-bottom: 20px;
+                padding-left: 10px;
+            }
+
+            .feature-item h4 {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .feature-item p {
+                font-size: 0.95rem;
+                opacity: 0.9;
+                line-height: 1.6;
+                padding-left: 30px;
+            }
+
+            .emoji {
+                font-size: 1.3rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="hero">
+            <div class="animated-bg">
+                <div class="orb orb1"></div>
+                <div class="orb orb2"></div>
+                <div class="orb orb3"></div>
+            </div>
+            <div class="particles" id="particles"></div>
+
+            <div class="content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="icon.png" alt="Logo" style="width: 70px; height: 70px; object-fit: cover;" id="logog" />
+                    </div>
+                    <div class="brand-name">Limlo</div>
+                </div>
+
+                <h1>Your Complete ABU Campus Companion</h1>
+                <p class="tagline">Navigate the campus effortlessly, get instant help with your coursework, and share notes with classmates.</p>
+
+                <div class="download-section">
+                    
+                    <div class="version-toggle">
+                        <button class="toggle-btn" id="btn-v1" onclick="switchVersion('v1')">Version 1.0.2</button>
+                        <button class="toggle-btn active" id="btn-v2" onclick="switchVersion('v2')">Version 2.0.0</button>
+                    </div>
+
+                    <!-- What's New Button -->
+                    <div class="whats-new-wrapper">
+                        <button id="whatsNewBtn" class="whats-new-btn" onclick="openModal()">
+                            <span class="shine"></span>
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" />
+                            </svg>
+                            <span style="position: relative; z-index: 1;">What's New in v2.0.0</span>
+                        </button>
+                        <span class="emoji-float emoji-1">🎉</span>
+                        <span class="emoji-float emoji-2">🚀</span>
+                        <span class="emoji-float emoji-3">⭐</span>
+                        <span class="emoji-float emoji-4">🔥</span>
+                        <span class="emoji-float emoji-5">💫</span>
+                        <span class="emoji-float emoji-6">✨</span>
+                    </div>
+
+                    <div id="content-v2" class="button-container active">
+                        <a href="https://github.com/ahmedisiaka/limlostore/releases/download/limlo/limloandriodv2.0.0.apk" class="download-btn btn-android">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
+                            Download Android (v2.0.0)
+                        </a>
+                        
+                        <button onclick="showToast()" class="download-btn btn-other">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.69C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.37 12.36,4.26 13,3.5Z" /></svg>
+                            iOS
+                        </button>
+
+                        <button onclick="showToast()" class="download-btn btn-other">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3,12V6.75L9,5.43V11.91L3,12M20,3V11.75L10,11.91V4.41L20,3M3,13L9,13.09V19.9L3,18.75V13M20,13.25V22L10,20.09V13.1L20,13.25Z" /></svg>
+                            Windows
+                        </button>
+                    </div>
+
+                    <div id="content-v1" class="button-container">
+                        <a href="https://github.com/ahmedisiaka/limlostore/releases/download/limlo/limloandriodv1.0.2.apk" class="download-btn btn-android">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
+                            Download Android (v1.0.2)
+                        </a>
+
+                        <button onclick="showToast()" class="download-btn btn-other">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.69C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.37 12.36,4.26 13,3.5Z" /></svg>
+                            iOS
+                        </button>
+
+                         <button onclick="showToast()" class="download-btn btn-other">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3,12V6.75L9,5.43V11.91L3,12M20,3V11.75L10,11.91V4.41L20,3M3,13L9,13.09V19.9L3,18.75V13M20,13.25V22L10,20.09V13.1L20,13.25Z" /></svg>
+                            Windows
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="features">
+                    <div class="feature">
+                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" /></svg>
+                        <h3>Interactive Map</h3>
+                        <p>Find lecture halls and departments with real-time navigation.</p>
+                    </div>
+                    <div class="feature">
+                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M21 18.5V7C19.96 6.67 18.79 6.5 17.5 6.5C15.45 6.5 13.62 7 12 8V19.5C13.62 18.5 15.45 18 17.5 18C18.69 18 19.86 18.16 21 18.5M17.5 4.5C19.85 4.5 21.69 5 23 6V20.56C23 20.68 22.95 20.8 22.84 20.91C22.73 21 22.61 21.08 22.5 21.08C22.39 21.08 22.31 21.06 22.25 21.03C20.97 20.34 19.38 20 17.5 20C15.45 20 13.62 20.5 12 21.5C10.66 20.5 8.83 20 6.5 20C4.84 20 3.25 20.36 1.75 21.07V6C2.34 5 4.18 4.5 6.5 4.5C8.83 4.5 10.66 5 12 6C13.34 5 15.17 4.5 17.5 4.5Z" /></svg>
+                        <h3>Study Assistant</h3>
+                        <p>Upload questions and receive clear, step-by-step explanations.</p>
+                    </div>
+                    <div class="feature">
+                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M14,10H19.5L14,4.5V10M5,3H15L21,9V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3M7,8H9V10H7V8M7,12H9V14H7V12M7,16H9V18H7V16M11,8H17V10H11V8M11,12H17V14H11V12M11,16H17V18H11V16Z" /></svg>
+                        <h3>Note Hub</h3>
+                        <p>Collaborate and share lecture notes with your classmates.</p>
+                    </div>
+                    <div class="feature">
+                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" /></svg>
+                        <h3>Built for ABU</h3>
+                        <p>Specifically tailored for the Ahmadu Bello University community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What's New Modal -->
+        <div id="whatsNewModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🚀 Limlo v2.0.0 — The Smart Campus Upgrade</h2>
+                    <p>Limlo v2.0.0 is a major leap forward, turning Limlo into a personalized smart assistant for every ABU student.</p>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="changelog-section">
+                        <h3><span class="emoji">🌟</span> What's New</h3>
+                        
+                        <div class="feature-item">
+                            <h4><span class="emoji">🗓</span> Timetables for All Faculties & Departments</h4>
+                            <p>Access class schedules across the entire university.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4><span class="emoji">⏰</span> Smart Class Alarms & Reminders</h4>
+                            <p>Get notified before your lectures so you never miss a class.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4><span class="emoji">📚</span> Past Questions for Everyone</h4>
+                            <p>Full PQ access for all faculties and departments.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4><span class="emoji">🧪</span> CBT Practice Mode</h4>
+                            <p>Prepare for exams with realistic computer-based testing.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4><span class="emoji">📊</span> CGPA Calculator</h4>
+                            <p>Instantly calculate and track your academic performance.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4><span class="emoji">📸</span> PhotoMath-Style Solver</h4>
+                            <p>Snap or input questions and get step-by-step solutions, especially for math and science courses.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4><span class="emoji">🎮</span> Game Teasers</h4>
+                            <p>Sneak peeks of fun, campus-themed games coming soon.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4><span class="emoji">🤖</span> Advanced Limlo AI (Personalized & Location-Aware)</h4>
+                            <p>A smarter AI that:</p>
+                            <p>• Understands you, your faculty, and your courses</p>
+                            <p>• Knows ABU locations and can guide you around campus</p>
+                            <p>• Gives more accurate, contextual academic support</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4><span class="emoji">🎨</span> Advanced & Modern UI</h4>
+                            <p>A cleaner, smoother, and more intuitive user experience.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <p style="font-size: 1.1rem; font-weight: 700; text-align: center;">Limlo 2.0.0 isn't just an update — it's your personal AI-powered campus companion for ABU.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="toast">Coming Soon</div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 style="margin-bottom: 15px;">About Limlo</h4>
+                    <p style="opacity: 0.7; line-height: 1.6;">The ultimate tool for ABU students. Navigate, learn, and collaborate with ease.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 style="margin-bottom: 15px;">Contact Us</h4>
+                    <a href="https://wa.me/2347079776336" class="contact-item" target="_blank">
+                        <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2 22L7.22 20.64C8.66 21.42 10.3 21.82 12.03 21.82C17.49 21.82 21.94 17.37 21.94 11.91C21.94 6.45 17.49 2 12.04 2Z"/></svg>
+                        +234 707 977 6336
+                    </a>
+                    <a href="https://wa.me/2348136479353" class="contact-item" target="_blank">
+                        <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2 22L7.22 20.64C8.66 21.42 10.3 21.82 12.03 21.82C17.49 21.82 21.94 17.37 21.94 11.91C21.94 6.45 17.49 2 12.04 2Z"/></svg>
+                        +234 813 647 9353
+                    </a>
+                    <a href="/cdn-cgi/l/email-protection#f491989d80919091879d939a87959a908091979cb49399959d98da979b99" class="contact-item">
+                        <svg class="email-icon" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
+                        <span class="__cf_email__" data-cfemail="f1949d98859495948298969f82909f9585949299b1969c90989ddf929e9c">ahmeddosumu1@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+            <p style="text-align: center; color: rgba(255,255,255,0.4); margin-top: 30px; font-size: 0.8rem;">&copy; 2026 Limlo. All rights reserved.</p>
+        </footer>
+
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+            // Particles Animation
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 15 + 's';
+                container.appendChild(p);
+            }
+
+            // Version Switching Logic
+            let whatsNewTimer;
+            
+            function switchVersion(version) {
+                // Clear any existing timer
+                clearTimeout(whatsNewTimer);
+                
+                // Buttons
+                const btnV1 = document.getElementById('btn-v1');
+                const btnV2 = document.getElementById('btn-v2');
+                
+                // Content Areas
+                const contentV1 = document.getElementById('content-v1');
+                const contentV2 = document.getElementById('content-v2');
+                
+                // What's New Button
+                const whatsNewBtn = document.getElementById('whatsNewBtn');
+                const wrapper = document.querySelector('.whats-new-wrapper');
+
+                if (version === 'v1') {
+                    // Activate V1 Tab
+                    btnV1.classList.add('active');
+                    btnV2.classList.remove('active');
+                    
+                    // Show V1 Content
+                    contentV1.classList.add('active');
+                    contentV2.classList.remove('active');
+                    
+                    // Hide What's New Button
+                    whatsNewBtn.classList.remove('show');
+                    if (wrapper) wrapper.style.display = 'none';
+                } else {
+                    // Activate V2 Tab
+                    btnV2.classList.add('active');
+                    btnV1.classList.remove('active');
+                    
+                    // Show V2 Content
+                    contentV2.classList.add('active');
+                    contentV1.classList.remove('active');
+                    
+                    // Show What's New Button after 2 seconds
+                    whatsNewTimer = setTimeout(() => {
+                        whatsNewBtn.classList.add('show');
+                        if (wrapper) wrapper.style.display = 'inline-block';
+                    }, 2000);
+                }
+            }
+
+            // Modal Functions
+            function openModal() {
+                createConfetti();
+                document.getElementById('whatsNewModal').style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+
+            function createConfetti() {
+                const wrapper = document.querySelector('.whats-new-wrapper');
+                const colors = ['#10b981', '#34d399', '#6ee7b7', '#fbbf24', '#f59e0b', '#ef4444', '#ec4899'];
+                
+                for (let i = 0; i < 30; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '50%';
+                    confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                    confetti.style.animation = 'confetti-fall 1.5s ease-out forwards';
+                    
+                    wrapper.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 1500);
+                }
+            }
+
+            function closeModal() {
+                document.getElementById('whatsNewModal').style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            }
+
+            // Close modal when clicking outside of it
+            window.onclick = function(event) {
+                const modal = document.getElementById('whatsNewModal');
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+
+            // Toast Function Logic
+            function showToast() {
+                var x = document.getElementById("toast");
+                x.className = "show";
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            }
+
+            // Initialize: Show What's New button after 2 seconds since v2 is default
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const whatsNewBtn = document.getElementById('whatsNewBtn');
+                    const wrapper = document.querySelector('.whats-new-wrapper');
+                    whatsNewBtn.classList.add('show');
+                    if (wrapper) wrapper.style.display = 'inline-block';
+                }, 2000);
+            });
+        </script>
+    </body>
+</html>
