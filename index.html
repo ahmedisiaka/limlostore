@@ -70,67 +70,22 @@
                 50% { transform: translateY(-12px); }
             }
 
-            @keyframes bounceIn {
-                0% { opacity: 0; transform: scale(0.3); }
-                50% { opacity: 1; transform: scale(1.05); }
-                70% { transform: scale(0.9); }
-                100% { transform: scale(1); }
+            @keyframes slideDown {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(-20px); 
+                    max-height: 0;
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0); 
+                    max-height: 1000px;
+                }
             }
 
             @keyframes pulse {
-                0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-                50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            }
-
-            @keyframes crazyShake {
-                0%, 100% { transform: translateX(0) rotate(0deg); }
-                10% { transform: translateX(-5px) rotate(-3deg); }
-                20% { transform: translateX(5px) rotate(3deg); }
-                30% { transform: translateX(-5px) rotate(-3deg); }
-                40% { transform: translateX(5px) rotate(3deg); }
-                50% { transform: translateX(-5px) rotate(-3deg); }
-                60% { transform: translateX(5px) rotate(3deg); }
-                70% { transform: translateX(-5px) rotate(-3deg); }
-                80% { transform: translateX(5px) rotate(3deg); }
-                90% { transform: translateX(-5px) rotate(-3deg); }
-            }
-
-            @keyframes rainbow {
-                0% { filter: hue-rotate(0deg); }
-                100% { filter: hue-rotate(360deg); }
-            }
-
-            @keyframes glow {
-                0%, 100% { 
-                    box-shadow: 
-                        0 0 20px rgba(16, 185, 129, 0.8),
-                        0 0 40px rgba(16, 185, 129, 0.6),
-                        0 0 60px rgba(16, 185, 129, 0.4),
-                        inset 0 0 20px rgba(16, 185, 129, 0.2);
-                }
-                50% { 
-                    box-shadow: 
-                        0 0 30px rgba(16, 185, 129, 1),
-                        0 0 60px rgba(16, 185, 129, 0.8),
-                        0 0 90px rgba(16, 185, 129, 0.6),
-                        inset 0 0 30px rgba(16, 185, 129, 0.4);
-                }
-            }
-
-            @keyframes wiggle {
-                0%, 100% { transform: rotate(0deg); }
-                25% { transform: rotate(5deg); }
-                75% { transform: rotate(-5deg); }
-            }
-
-            @keyframes expandShrink {
                 0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.15); }
-            }
-
-            @keyframes sparkle {
-                0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
-                50% { opacity: 1; transform: scale(1) rotate(180deg); }
+                50% { transform: scale(1.05); }
             }
 
             .content {
@@ -167,529 +122,367 @@
                 font-weight: 800;
                 color: #ffffff;
             }
-#logog {
-    border-radius: 15px; /* Or 50% for a circle */
-}
 
+            #logog {
+                border-radius: 15px;
+            }
 
             h1 {
                 font-size: clamp(2.2rem, 7vw, 4.5rem);
                 font-weight: 800;
                 margin-bottom: 20px;
-                line-height: 1.2;
-                animation: fadeInUp 1.6s ease-out 0.3s backwards;
+                line-height: 1.1;
+                color: #ffffff;
+                animation: fadeInUp 1s ease-out;
             }
 
-            .tagline {
-                font-size: clamp(1.1rem, 3vw, 1.4rem);
+            .subtitle {
+                font-size: clamp(1rem, 3vw, 1.3rem);
+                margin-bottom: 35px;
+                color: rgba(255, 255, 255, 0.85);
+                animation: fadeInUp 1.2s ease-out;
+            }
+
+            .version-badge {
+                display: inline-block;
+                background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+                backdrop-filter: blur(10px);
+                padding: 20px 50px;
+                border-radius: 60px;
+                font-size: 1.8rem;
+                font-weight: 900;
                 margin-bottom: 40px;
-                opacity: 0.95;
-                animation: fadeInUp 1.6s ease-out 0.6s backwards;
+                border: 3px solid rgba(255, 255, 255, 0.5);
+                box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5), 
+                            0 0 0 0 rgba(16, 185, 129, 0.7);
+                animation: fadeInUp 1.4s ease-out, glowPulse 2s ease-in-out infinite;
+                letter-spacing: 1px;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            @keyframes glowPulse {
+                0%, 100% { 
+                    box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5), 
+                                0 0 30px rgba(16, 185, 129, 0.7),
+                                0 0 0 0 rgba(16, 185, 129, 0);
+                }
+                50% { 
+                    box-shadow: 0 20px 60px rgba(16, 185, 129, 0.7), 
+                                0 0 50px rgba(16, 185, 129, 1),
+                                0 0 0 10px rgba(16, 185, 129, 0);
+                    transform: scale(1.05);
+                }
             }
 
             .download-section {
-                animation: fadeInUp 1.6s ease-out 0.9s backwards;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                margin-top: 50px;
+                animation: fadeInUp 1.8s ease-out;
+            }
+
+            .download-title {
+                font-size: 2.5rem;
+                font-weight: 800;
+                margin-bottom: 35px;
+                color: #ffffff;
+                text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .download-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 20px;
-                width: 100%;
-                max-width: 500px;
+                max-width: 700px;
                 margin: 0 auto;
             }
 
-            /* --- Version Toggle Switch --- */
-            .version-toggle {
-                display: flex;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 50px;
-                padding: 5px;
-                position: relative;
-                width: 100%;
-                margin-bottom: 10px;
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .toggle-btn {
-                flex: 1;
-                text-align: center;
-                padding: 12px 0;
-                font-size: 1rem;
+            .download-btn {
+                padding: 20px 30px;
+                font-size: 1.1rem;
                 font-weight: 700;
-                color: #fff;
-                cursor: pointer;
-                border-radius: 40px;
-                transition: background 0.3s ease, color 0.3s ease;
-                background: transparent;
-                border: none;
-            }
-
-            .toggle-btn.active {
-                background: #ffffff;
+                background: rgba(255, 255, 255, 0.95);
                 color: #047857;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
             }
 
-            /* --- What's New Button --- */
-            .whats-new-btn {
-                display: none;
+            .download-btn:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+                background: #ffffff;
+            }
+
+            .download-btn:active {
+                transform: translateY(-2px);
+            }
+
+            .os-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            /* Previous Versions Section */
+            .previous-versions-section {
+                margin-top: 80px;
+                padding: 60px 20px;
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            .show-versions-btn {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                color: white;
+                padding: 15px 40px;
+                border-radius: 50px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .show-versions-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .show-versions-btn svg {
+                transition: transform 0.3s ease;
+            }
+
+            .show-versions-btn.active svg {
+                transform: rotate(180deg);
+            }
+
+            .versions-container {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                margin-top: 40px;
+            }
+
+            .versions-container.show {
+                max-height: 2000px;
+                animation: slideDown 0.5s ease;
+            }
+
+            .version-card {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                border-radius: 20px;
+                padding: 30px;
+                margin-bottom: 30px;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.3s ease;
+            }
+
+            .versions-container.show .version-card {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .versions-container.show .version-card:nth-child(1) {
+                transition-delay: 0.1s;
+            }
+
+            .versions-container.show .version-card:nth-child(2) {
+                transition-delay: 0.2s;
+            }
+
+            .version-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 25px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .version-number {
+                font-size: 1.8rem;
+                font-weight: 800;
+                color: #10b981;
+            }
+
+            .version-date {
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.6);
+            }
+
+            .version-downloads {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .version-download-btn {
+                padding: 15px 25px;
+                font-size: 1rem;
+                font-weight: 600;
+                background: rgba(16, 185, 129, 0.2);
+                color: white;
+                border: 2px solid #10b981;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 8px;
-                padding: 16px 32px;
-                font-size: 1.1rem;
-                font-weight: 800;
-                background: linear-gradient(135deg, #10b981 0%, #059669 50%, #34d399 100%);
-                color: #ffffff;
-                border: 3px solid rgba(255, 255, 255, 0.3);
-                border-radius: 50px;
-                cursor: pointer;
-                position: relative;
-                overflow: hidden;
-                margin-bottom: 10px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
             }
 
-            .whats-new-btn.show {
-                display: flex;
-                animation: 
-                    bounceIn 0.8s ease-out,
-                    crazyShake 3s ease-in-out 2s infinite,
-                    glow 2s ease-in-out infinite,
-                    rainbow 6s linear infinite;
+            .version-download-btn:hover {
+                background: #10b981;
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
             }
 
-            .whats-new-btn:hover {
-                animation: 
-                    wiggle 0.3s ease-in-out infinite,
-                    glow 1s ease-in-out infinite,
-                    rainbow 3s linear infinite,
-                    expandShrink 0.6s ease-in-out infinite !important;
-            }
-
-            .whats-new-btn:active {
-                transform: scale(0.95) rotate(2deg);
-            }
-
-            /* Sparkles around button */
-            .whats-new-btn::before,
-            .whats-new-btn::after {
-                content: '✨';
-                position: absolute;
-                font-size: 1.5rem;
-                animation: sparkle 1.5s ease-in-out infinite;
-            }
-
-            .whats-new-btn::before {
-                top: -10px;
-                left: -10px;
-                animation-delay: 0s;
-            }
-
-            .whats-new-btn::after {
-                bottom: -10px;
-                right: -10px;
-                animation-delay: 0.75s;
-            }
-
-            /* Shiny overlay effect */
-            .whats-new-btn .shine {
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-                animation: shine 3s infinite;
-            }
-
-            @keyframes shine {
-                0% { left: -100%; }
-                50%, 100% { left: 100%; }
-            }
-
-            /* Icon rotation */
-            .whats-new-btn svg {
-                animation: spin 4s linear infinite;
-            }
-
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-
-            .whats-new-btn:hover svg {
-                animation: spin 0.5s linear infinite;
-            }
-
-            /* Floating emojis around button */
-            .emoji-float {
-                position: absolute;
-                font-size: 1.5rem;
-                pointer-events: none;
-                animation: floatEmoji 3s ease-in-out infinite;
-                z-index: 1;
-            }
-
-            @keyframes floatEmoji {
-                0%, 100% { 
-                    transform: translateY(0) rotate(0deg);
-                    opacity: 1;
-                }
-                50% { 
-                    transform: translateY(-20px) rotate(360deg);
-                    opacity: 0.7;
-                }
-            }
-
-            .emoji-1 { top: -15px; left: 10%; animation-delay: 0s; }
-            .emoji-2 { top: -15px; right: 10%; animation-delay: 0.5s; }
-            .emoji-3 { bottom: -15px; left: 15%; animation-delay: 1s; }
-            .emoji-4 { bottom: -15px; right: 15%; animation-delay: 1.5s; }
-            .emoji-5 { top: 50%; left: -20px; transform: translateY(-50%); animation-delay: 0.25s; }
-            .emoji-6 { top: 50%; right: -20px; transform: translateY(-50%); animation-delay: 0.75s; }
-
-            /* Button wrapper for container */
-            .whats-new-wrapper {
-                position: relative;
-                display: inline-block;
-            }
-
-            /* Confetti particles */
-            @keyframes confetti-fall {
-                0% { 
-                    transform: translateY(0) rotate(0deg);
-                    opacity: 1;
-                }
-                100% { 
-                    transform: translateY(100px) rotate(720deg);
-                    opacity: 0;
-                }
-            }
-
-            .confetti {
-                position: absolute;
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 999;
-            }
-
-            /* Neon glow text effect */
-            @keyframes neon-glow {
-                0%, 100% {
-                    text-shadow: 
-                        0 0 10px #fff,
-                        0 0 20px #fff,
-                        0 0 30px #10b981,
-                        0 0 40px #10b981;
-                }
-                50% {
-                    text-shadow: 
-                        0 0 5px #fff,
-                        0 0 10px #fff,
-                        0 0 15px #10b981,
-                        0 0 20px #10b981,
-                        0 0 30px #10b981;
-                }
-            }
-
-            .whats-new-btn:hover span:last-child {
-                animation: neon-glow 1s ease-in-out infinite;
-            }
-
-            /* --- Buttons Layout --- */
-            .button-container {
-                display: none; /* Hidden by default */
-                flex-direction: column;
-                gap: 15px;
-                width: 100%;
-                animation: fadeInUp 0.5s ease-out;
-            }
-
-            .button-container.active {
-                display: flex;
-            }
-
-            .download-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 12px;
-                padding: 18px 30px;
-                font-size: 1.1rem;
-                font-weight: 700;
-                text-decoration: none;
-                border-radius: 50px;
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-                cursor: pointer;
-                border: none;
-                width: 100%;
-            }
-
-            .download-btn:active { transform: scale(0.98); }
-
-            /* Styles specific to button types */
-            .btn-android {
-                background: #ffffff;
-                color: #047857;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            }
-            .btn-android:hover { background: #f0fdf4; }
-
-            .btn-other {
-                background: rgba(255, 255, 255, 0.15);
-                color: #fff;
-                border: 1px solid rgba(255,255,255,0.2);
-            }
-            .btn-other:hover { background: rgba(255, 255, 255, 0.25); }
-
-
-            .features {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 25px;
-                margin-top: 70px;
-                animation: fadeInUp 1.6s ease-out 1.2s backwards;
-            }
-
-            .feature {
-                padding: 30px 25px;
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-                border-radius: 20px;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                transition: transform 0.4s ease;
-            }
-
-            .feature:hover { transform: translateY(-10px); }
-
-            .feature-icon { width: 48px; height: 48px; margin: 0 auto 15px; fill: #ffffff; }
-            .feature h3 { font-size: 1.3rem; margin-bottom: 12px; }
-            .feature p { font-size: 0.95rem; opacity: 0.85; line-height: 1.6; }
-
+            /* Footer */
             .footer {
-                background: rgba(0, 0, 0, 0.8);
-                backdrop-filter: blur(10px);
+                background: rgba(0, 0, 0, 0.5);
                 padding: 50px 20px 30px;
-                position: relative;
-                z-index: 10;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 80px;
             }
 
             .footer-content {
-                max-width: 900px;
+                max-width: 1200px;
                 margin: 0 auto;
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                 gap: 40px;
+                margin-bottom: 30px;
+            }
+
+            .footer-section h4 {
+                color: #10b981;
+                margin-bottom: 15px;
+                font-size: 1.2rem;
+            }
+
+            .footer-section p {
+                opacity: 0.7;
+                line-height: 1.6;
             }
 
             .contact-item {
                 display: flex;
                 align-items: center;
-                gap: 12px;
-                margin-bottom: 12px;
-                color: rgba(255, 255, 255, 0.9);
+                gap: 10px;
+                color: rgba(255, 255, 255, 0.8);
                 text-decoration: none;
-                font-size: 1rem;
-                transition: color 0.3s ease;
+                margin-bottom: 12px;
+                transition: all 0.3s ease;
             }
 
-            .contact-item:hover { color: #10b981; }
-
-            .whatsapp-icon { fill: #25D366; width: 28px; height: 28px; }
-            .email-icon { fill: #ffffff; width: 24px; height: 24px; opacity: 0.9; }
-
-            .particles {
-                position: absolute;
-                top: 0; left: 0; width: 100%; height: 100%;
-                pointer-events: none;
+            .contact-item:hover {
+                color: #10b981;
+                transform: translateX(5px);
             }
 
-            .particle {
-                position: absolute;
-                width: 3px; height: 3px;
-                background: rgba(255, 255, 255, 0.4);
-                border-radius: 50%;
-                animation: rise 15s infinite ease-in;
+            .whatsapp-icon, .email-icon {
+                width: 24px;
+                height: 24px;
+                fill: #10b981;
             }
 
-            @keyframes rise {
-                0% { bottom: -10px; opacity: 0; }
-                10% { opacity: 1; }
-                90% { opacity: 1; }
-                100% { bottom: 100%; opacity: 0; }
-            }
-
-            /* Toast Notification Style */
+            /* Toast */
             #toast {
                 visibility: hidden;
                 min-width: 250px;
-                margin-left: -125px;
-                background-color: #333;
+                background-color: #10b981;
                 color: #fff;
                 text-align: center;
-                border-radius: 50px;
+                border-radius: 10px;
                 padding: 16px;
                 position: fixed;
                 z-index: 1000;
                 left: 50%;
                 bottom: 30px;
+                transform: translateX(-50%);
                 font-size: 17px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-                border: 1px solid rgba(255,255,255,0.1);
-                opacity: 0;
-                transition: opacity 0.3s, bottom 0.3s, visibility 0.3s;
+                font-weight: 600;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             }
 
             #toast.show {
                 visibility: visible;
-                opacity: 1;
-                bottom: 50px;
+                animation: fadein 0.5s, fadeout 0.5s 2.5s;
             }
 
-            /* Modal Styles */
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 2000;
-                left: 0;
-                top: 0;
+            @keyframes fadein {
+                from { bottom: 0; opacity: 0; }
+                to { bottom: 30px; opacity: 1; }
+            }
+
+            @keyframes fadeout {
+                from { bottom: 30px; opacity: 1; }
+                to { bottom: 0; opacity: 0; }
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .brand-name {
+                    font-size: 2rem;
+                }
+
+                .download-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .version-downloads {
+                    grid-template-columns: 1fr;
+                }
+
+                .version-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+
+            /* Particles */
+            #particles {
+                position: absolute;
                 width: 100%;
                 height: 100%;
-                overflow: auto;
-                background-color: rgba(0, 0, 0, 0.85);
-                backdrop-filter: blur(10px);
-                animation: fadeIn 0.3s ease-out;
+                overflow: hidden;
             }
 
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-
-            .modal-content {
-                background: linear-gradient(135deg, #047857 0%, #065f46 100%);
-                margin: 5% auto;
-                padding: 0;
-                border-radius: 20px;
-                max-width: 700px;
-                width: 90%;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-                animation: slideDown 0.4s ease-out;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            @keyframes slideDown {
-                from { transform: translateY(-50px); opacity: 0; }
-                to { transform: translateY(0); opacity: 1; }
-            }
-
-            .modal-header {
-                padding: 30px 30px 20px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-                position: relative;
-            }
-
-            .modal-header h2 {
-                font-size: 1.8rem;
-                font-weight: 800;
-                color: #ffffff;
-                margin-bottom: 5px;
-            }
-
-            .modal-header p {
-                color: rgba(255, 255, 255, 0.9);
-                font-size: 1rem;
-            }
-
-            .close {
+            .particle {
                 position: absolute;
-                right: 20px;
-                top: 20px;
-                color: #ffffff;
-                font-size: 32px;
-                font-weight: bold;
-                cursor: pointer;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                width: 4px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.6);
                 border-radius: 50%;
-                background: rgba(255, 255, 255, 0.1);
-                transition: all 0.3s ease;
+                animation: rise 15s infinite ease-in;
             }
 
-            .close:hover,
-            .close:focus {
-                background: rgba(255, 255, 255, 0.2);
-                transform: rotate(90deg);
-            }
-
-            .modal-body {
-                padding: 30px;
-                max-height: 60vh;
-                overflow-y: auto;
-                color: #ffffff;
-            }
-
-            .modal-body::-webkit-scrollbar {
-                width: 8px;
-            }
-
-            .modal-body::-webkit-scrollbar-track {
-                background: rgba(255, 255, 255, 0.1);
-                border-radius: 10px;
-            }
-
-            .modal-body::-webkit-scrollbar-thumb {
-                background: rgba(255, 255, 255, 0.3);
-                border-radius: 10px;
-            }
-
-            .modal-body::-webkit-scrollbar-thumb:hover {
-                background: rgba(255, 255, 255, 0.4);
-            }
-
-            .changelog-section {
-                margin-bottom: 30px;
-            }
-
-            .changelog-section h3 {
-                font-size: 1.4rem;
-                margin-bottom: 15px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .feature-item {
-                margin-bottom: 20px;
-                padding-left: 10px;
-            }
-
-            .feature-item h4 {
-                font-size: 1.1rem;
-                margin-bottom: 8px;
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .feature-item p {
-                font-size: 0.95rem;
-                opacity: 0.9;
-                line-height: 1.6;
-                padding-left: 30px;
-            }
-
-            .emoji {
-                font-size: 1.3rem;
+            @keyframes rise {
+                0% {
+                    bottom: -10%;
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    bottom: 110%;
+                    opacity: 0;
+                }
             }
         </style>
     </head>
@@ -699,168 +492,135 @@
                 <div class="orb orb1"></div>
                 <div class="orb orb2"></div>
                 <div class="orb orb3"></div>
+                <div id="particles"></div>
             </div>
-            <div class="particles" id="particles"></div>
 
             <div class="content">
                 <div class="logo-container">
                     <div class="logo">
-                        <img src="icon.png" alt="Logo" style="width: 70px; height: 70px; object-fit: cover;" id="logog" />
+                        <img id="logog" src="icon.png" alt="Limlo Logo" style="width: 100%; height: 100%;" />
                     </div>
-                    <div class="brand-name">Limlo</div>
+                    <span class="brand-name">Limlo</span>
                 </div>
 
-                <h1>Your Complete ABU Campus Companion</h1>
-                <p class="tagline">Navigate the campus effortlessly, get instant help with your coursework, and share notes with classmates.</p>
+                <h1>Your ABU Campus Companion</h1>
+                <p class="subtitle">Navigate, Learn, and Collaborate with Ease</p>
+
+                <div class="version-badge">⚡ Version 2.0.1 - Latest Release</div>
 
                 <div class="download-section">
-                    
-                    <div class="version-toggle">
-                        <button class="toggle-btn" id="btn-v1" onclick="switchVersion('v1')">Version 1.0.2</button>
-                        <button class="toggle-btn active" id="btn-v2" onclick="switchVersion('v2')">Version 2.0.0</button>
-                    </div>
-
-                    <!-- What's New Button -->
-                    <div class="whats-new-wrapper">
-                        <button id="whatsNewBtn" class="whats-new-btn" onclick="openModal()">
-                            <span class="shine"></span>
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" />
+                    <h2 class="download-title">Download Limlo 2.0.1</h2>
+                    <div class="download-grid">
+                        <button class="download-btn" onclick="window.location.href='https://github.com/ahmedisiaka/limlostore/releases/download/version2/limloandriodv2.0.1.apk'">
+                            <svg class="os-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993 0 .5511-.4483.9997-.9993.9997m11.4045-6.02l1.9973-3.4723a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4723C2.61 10.9871.8527 13.9973.8527 17.4037c0 .044.0029.0866.0047.1294h22.2852c.0018-.0427.0046-.0853.0046-.1294 0-3.4064-1.7573-6.4166-5.2652-8.0623M6.9822 17.4037c-.7323 0-1.3262-.594-1.3262-1.3263s.594-1.3263 1.3262-1.3263c.7322 0 1.3262.594 1.3262 1.3263s-.594 1.3263-1.3262 1.3263m10.0356 0c-.7322 0-1.3262-.594-1.3262-1.3263s.594-1.3263 1.3262-1.3263c.7322 0 1.3262.594 1.3262 1.3263s-.5939 1.3263-1.3262 1.3263"/>
                             </svg>
-                            <span style="position: relative; z-index: 1;">What's New in v2.0.0</span>
+                            Android
                         </button>
-                        <span class="emoji-float emoji-1">🎉</span>
-                        <span class="emoji-float emoji-2">🚀</span>
-                        <span class="emoji-float emoji-3">⭐</span>
-                        <span class="emoji-float emoji-4">🔥</span>
-                        <span class="emoji-float emoji-5">💫</span>
-                        <span class="emoji-float emoji-6">✨</span>
-                    </div>
-
-                    <div id="content-v2" class="button-container active">
-                        <a href="https://github.com/ahmedisiaka/limlostore/releases/download/version2/limloandriodv2.0.0.apk" class="download-btn btn-android">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
-                            Download Android (v2.0.0)
-                        </a>
-                        
-                        <button onclick="showToast()" class="download-btn btn-other">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.69C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.37 12.36,4.26 13,3.5Z" /></svg>
+                        <button class="download-btn" onclick="showToast()">
+                            <svg class="os-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                            </svg>
                             iOS
                         </button>
-
-                        <button onclick="showToast()" class="download-btn btn-other">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3,12V6.75L9,5.43V11.91L3,12M20,3V11.75L10,11.91V4.41L20,3M3,13L9,13.09V19.9L3,18.75V13M20,13.25V22L10,20.09V13.1L20,13.25Z" /></svg>
+                        <button class="download-btn" onclick="showToast()">
+                            <svg class="os-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            Web
+                        </button>
+                        <button class="download-btn" onclick="showToast()">
+                            <svg class="os-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                            </svg>
                             Windows
                         </button>
-                    </div>
-
-                    <div id="content-v1" class="button-container">
-                        <a href="https://github.com/ahmedisiaka/limlostore/releases/download/limlo/limloandriodv1.0.2.apk" class="download-btn btn-android">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
-                            Download Android (v1.0.2)
-                        </a>
-
-                        <button onclick="showToast()" class="download-btn btn-other">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.69C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.37 12.36,4.26 13,3.5Z" /></svg>
-                            iOS
-                        </button>
-
-                         <button onclick="showToast()" class="download-btn btn-other">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3,12V6.75L9,5.43V11.91L3,12M20,3V11.75L10,11.91V4.41L20,3M3,13L9,13.09V19.9L3,18.75V13M20,13.25V22L10,20.09V13.1L20,13.25Z" /></svg>
-                            Windows
-                        </button>
-                    </div>
-
-                </div>
-
-                <div class="features">
-                    <div class="feature">
-                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" /></svg>
-                        <h3>Interactive Map</h3>
-                        <p>Find lecture halls and departments with real-time navigation.</p>
-                    </div>
-                    <div class="feature">
-                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M21 18.5V7C19.96 6.67 18.79 6.5 17.5 6.5C15.45 6.5 13.62 7 12 8V19.5C13.62 18.5 15.45 18 17.5 18C18.69 18 19.86 18.16 21 18.5M17.5 4.5C19.85 4.5 21.69 5 23 6V20.56C23 20.68 22.95 20.8 22.84 20.91C22.73 21 22.61 21.08 22.5 21.08C22.39 21.08 22.31 21.06 22.25 21.03C20.97 20.34 19.38 20 17.5 20C15.45 20 13.62 20.5 12 21.5C10.66 20.5 8.83 20 6.5 20C4.84 20 3.25 20.36 1.75 21.07V6C2.34 5 4.18 4.5 6.5 4.5C8.83 4.5 10.66 5 12 6C13.34 5 15.17 4.5 17.5 4.5Z" /></svg>
-                        <h3>Study Assistant</h3>
-                        <p>Upload questions and receive clear, step-by-step explanations.</p>
-                    </div>
-                    <div class="feature">
-                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M14,10H19.5L14,4.5V10M5,3H15L21,9V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3M7,8H9V10H7V8M7,12H9V14H7V12M7,16H9V18H7V16M11,8H17V10H11V8M11,12H17V14H11V12M11,16H17V18H11V16Z" /></svg>
-                        <h3>Note Hub</h3>
-                        <p>Collaborate and share lecture notes with your classmates.</p>
-                    </div>
-                    <div class="feature">
-                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" /></svg>
-                        <h3>Built for ABU</h3>
-                        <p>Specifically tailored for the Ahmadu Bello University community.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- What's New Modal -->
-        <div id="whatsNewModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>🚀 Limlo v2.0.0 — The Smart Campus Upgrade</h2>
-                    <p>Limlo v2.0.0 is a major leap forward, turning Limlo into a personalized smart assistant for every ABU student.</p>
-                    <span class="close" onclick="closeModal()">&times;</span>
-                </div>
-                <div class="modal-body">
-                    <div class="changelog-section">
-                        <h3><span class="emoji">🌟</span> What's New</h3>
-                        
-                        <div class="feature-item">
-                            <h4><span class="emoji">🗓</span> Timetables for All Faculties & Departments</h4>
-                            <p>Access class schedules across the entire university.</p>
-                        </div>
+        <!-- Previous Versions Section -->
+        <div class="previous-versions-section">
+            <div style="text-align: center;">
+                <button class="show-versions-btn" onclick="toggleVersions()">
+                    <span id="toggleText">View Previous Versions</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+            </div>
 
-                        <div class="feature-item">
-                            <h4><span class="emoji">⏰</span> Smart Class Alarms & Reminders</h4>
-                            <p>Get notified before your lectures so you never miss a class.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4><span class="emoji">📚</span> Past Questions for Everyone</h4>
-                            <p>Full PQ access for all faculties and departments.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4><span class="emoji">🧪</span> CBT Practice Mode</h4>
-                            <p>Prepare for exams with realistic computer-based testing.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4><span class="emoji">📊</span> CGPA Calculator</h4>
-                            <p>Instantly calculate and track your academic performance.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4><span class="emoji">📸</span> PhotoMath-Style Solver</h4>
-                            <p>Snap or input questions and get step-by-step solutions, especially for math and science courses.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4><span class="emoji">🎮</span> Game Teasers</h4>
-                            <p>Sneak peeks of fun, campus-themed games coming soon.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4><span class="emoji">🤖</span> Advanced Limlo AI (Personalized & Location-Aware)</h4>
-                            <p>A smarter AI that:</p>
-                            <p>• Understands you, your faculty, and your courses</p>
-                            <p>• Knows ABU locations and can guide you around campus</p>
-                            <p>• Gives more accurate, contextual academic support</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4><span class="emoji">🎨</span> Advanced & Modern UI</h4>
-                            <p>A cleaner, smoother, and more intuitive user experience.</p>
+            <div class="versions-container" id="versionsContainer">
+                <!-- Version 2.0.0 -->
+                <div class="version-card">
+                    <div class="version-header">
+                        <div>
+                            <div class="version-number">Version 2.0.0</div>
+                            <div class="version-date">Released: January 2026</div>
                         </div>
                     </div>
+                    <div class="version-downloads">
+                        <button class="version-download-btn" onclick="window.location.href='https://github.com/ahmedisiaka/limlostore/releases/download/version2.0/limloandriodv2.0.0.apk'">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993 0 .5511-.4483.9997-.9993.9997m11.4045-6.02l1.9973-3.4723a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4723C2.61 10.9871.8527 13.9973.8527 17.4037c0 .044.0029.0866.0047.1294h22.2852c.0018-.0427.0046-.0853.0046-.1294 0-3.4064-1.7573-6.4166-5.2652-8.0623M6.9822 17.4037c-.7323 0-1.3262-.594-1.3262-1.3263s.594-1.3263 1.3262-1.3263c.7322 0 1.3262.594 1.3262 1.3263s-.594 1.3263-1.3262 1.3263m10.0356 0c-.7322 0-1.3262-.594-1.3262-1.3263s.594-1.3263 1.3262-1.3263c.7322 0 1.3262.594 1.3262 1.3263s-.5939 1.3263-1.3262 1.3263"/>
+                            </svg>
+                            Android
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                            </svg>
+                            iOS
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            Web
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                            </svg>
+                            Windows
+                        </button>
+                    </div>
+                </div>
 
-                    <div style="margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                        <p style="font-size: 1.1rem; font-weight: 700; text-align: center;">Limlo 2.0.0 isn't just an update — it's your personal AI-powered campus companion for ABU.</p>
+                <!-- Version 1.0.2 -->
+                <div class="version-card">
+                    <div class="version-header">
+                        <div>
+                            <div class="version-number">Version 1.0.2</div>
+                            <div class="version-date">Released: December 2025</div>
+                        </div>
+                    </div>
+                    <div class="version-downloads">
+                        <button class="version-download-btn" onclick="window.location.href='https://github.com/ahmedisiaka/limlostore/releases/download/limlo/limloandriodv1.0.2.apk'">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993 0 .5511-.4483.9997-.9993.9997m11.4045-6.02l1.9973-3.4723a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4723C2.61 10.9871.8527 13.9973.8527 17.4037c0 .044.0029.0866.0047.1294h22.2852c.0018-.0427.0046-.0853.0046-.1294 0-3.4064-1.7573-6.4166-5.2652-8.0623M6.9822 17.4037c-.7323 0-1.3262-.594-1.3262-1.3263s.594-1.3263 1.3262-1.3263c.7322 0 1.3262.594 1.3262 1.3263s-.594 1.3263-1.3262 1.3263m10.0356 0c-.7322 0-1.3262-.594-1.3262-1.3263s.594-1.3263 1.3262-1.3263c.7322 0 1.3262.594 1.3262 1.3263s-.5939 1.3263-1.3262 1.3263"/>
+                            </svg>
+                            Android
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                            </svg>
+                            iOS
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            Web
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                            </svg>
+                            Windows
+                        </button>
                     </div>
                 </div>
             </div>
@@ -871,11 +631,11 @@
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4 style="margin-bottom: 15px;">About Limlo</h4>
-                    <p style="opacity: 0.7; line-height: 1.6;">The ultimate tool for ABU students. Navigate, learn, and collaborate with ease.</p>
+                    <h4>About Limlo</h4>
+                    <p>The ultimate tool for ABU students. Navigate, learn, and collaborate with ease.</p>
                 </div>
                 <div class="footer-section">
-                    <h4 style="margin-bottom: 15px;">Contact Us</h4>
+                    <h4>Contact Us</h4>
                     <a href="https://wa.me/2347079776336" class="contact-item" target="_blank">
                         <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2 22L7.22 20.64C8.66 21.42 10.3 21.82 12.03 21.82C17.49 21.82 21.94 17.37 21.94 11.91C21.94 6.45 17.49 2 12.04 2Z"/></svg>
                         +234 707 977 6336
@@ -884,16 +644,16 @@
                         <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2 22L7.22 20.64C8.66 21.42 10.3 21.82 12.03 21.82C17.49 21.82 21.94 17.37 21.94 11.91C21.94 6.45 17.49 2 12.04 2Z"/></svg>
                         +234 813 647 9353
                     </a>
-                    <a href="mailto:ahmeddosumu1@gmail.com?subject=LIMLO" class="contact-item">
+                    <a href="mailto:ahmeddosumu1@gmail.com" class="contact-item">
                         <svg class="email-icon" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
-                        <span class="__cf_email__" data-cfemail="f1949d98859495948298969f82909f9585949299b1969c90989ddf929e9c">ahmeddosumu1@gmail.com</span>
+                        ahmeddosumu1@gmail.com
                     </a>
                 </div>
             </div>
             <p style="text-align: center; color: rgba(255,255,255,0.4); margin-top: 30px; font-size: 0.8rem;">&copy; 2026 Limlo. All rights reserved.</p>
         </footer>
 
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        <script>
             // Particles Animation
             const container = document.getElementById('particles');
             for (let i = 0; i < 40; i++) {
@@ -904,109 +664,29 @@
                 container.appendChild(p);
             }
 
-            // Version Switching Logic
-            let whatsNewTimer;
-            
-            function switchVersion(version) {
-                // Clear any existing timer
-                clearTimeout(whatsNewTimer);
+            // Toggle Previous Versions
+            function toggleVersions() {
+                const container = document.getElementById('versionsContainer');
+                const button = document.querySelector('.show-versions-btn');
+                const toggleText = document.getElementById('toggleText');
                 
-                // Buttons
-                const btnV1 = document.getElementById('btn-v1');
-                const btnV2 = document.getElementById('btn-v2');
+                container.classList.toggle('show');
+                button.classList.toggle('active');
                 
-                // Content Areas
-                const contentV1 = document.getElementById('content-v1');
-                const contentV2 = document.getElementById('content-v2');
-                
-                // What's New Button
-                const whatsNewBtn = document.getElementById('whatsNewBtn');
-                const wrapper = document.querySelector('.whats-new-wrapper');
-
-                if (version === 'v1') {
-                    // Activate V1 Tab
-                    btnV1.classList.add('active');
-                    btnV2.classList.remove('active');
-                    
-                    // Show V1 Content
-                    contentV1.classList.add('active');
-                    contentV2.classList.remove('active');
-                    
-                    // Hide What's New Button
-                    whatsNewBtn.classList.remove('show');
-                    if (wrapper) wrapper.style.display = 'none';
+                if (container.classList.contains('show')) {
+                    toggleText.textContent = 'Hide Previous Versions';
                 } else {
-                    // Activate V2 Tab
-                    btnV2.classList.add('active');
-                    btnV1.classList.remove('active');
-                    
-                    // Show V2 Content
-                    contentV2.classList.add('active');
-                    contentV1.classList.remove('active');
-                    
-                    // Show What's New Button after 2 seconds
-                    whatsNewTimer = setTimeout(() => {
-                        whatsNewBtn.classList.add('show');
-                        if (wrapper) wrapper.style.display = 'inline-block';
-                    }, 2000);
+                    toggleText.textContent = 'View Previous Versions';
                 }
             }
 
-            // Modal Functions
-            function openModal() {
-                createConfetti();
-                document.getElementById('whatsNewModal').style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            }
-
-            function createConfetti() {
-                const wrapper = document.querySelector('.whats-new-wrapper');
-                const colors = ['#10b981', '#34d399', '#6ee7b7', '#fbbf24', '#f59e0b', '#ef4444', '#ec4899'];
-                
-                for (let i = 0; i < 30; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.left = Math.random() * 100 + '%';
-                    confetti.style.top = '50%';
-                    confetti.style.animationDelay = Math.random() * 0.3 + 's';
-                    confetti.style.animation = 'confetti-fall 1.5s ease-out forwards';
-                    
-                    wrapper.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 1500);
-                }
-            }
-
-            function closeModal() {
-                document.getElementById('whatsNewModal').style.display = 'none';
-                document.body.style.overflow = 'auto'; // Re-enable scrolling
-            }
-
-            // Close modal when clicking outside of it
-            window.onclick = function(event) {
-                const modal = document.getElementById('whatsNewModal');
-                if (event.target == modal) {
-                    closeModal();
-                }
-            }
-
-            // Toast Function Logic
+            // Toast Function
             function showToast() {
                 var x = document.getElementById("toast");
+                x.textContent = "Coming Soon";
                 x.className = "show";
                 setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
             }
-
-            // Initialize: Show What's New button after 2 seconds since v2 is default
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    const whatsNewBtn = document.getElementById('whatsNewBtn');
-                    const wrapper = document.querySelector('.whats-new-wrapper');
-                    whatsNewBtn.classList.add('show');
-                    if (wrapper) wrapper.style.display = 'inline-block';
-                }, 2000);
-            });
         </script>
     </body>
 </html>
