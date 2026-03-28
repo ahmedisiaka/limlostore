@@ -18,7 +18,7 @@
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                     Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
                 overflow-x: hidden;
-                background: #0a0a0a;
+                background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
                 color: #ffffff;
             }
 
@@ -29,7 +29,7 @@
                 justify-content: center;
                 position: relative;
                 overflow: hidden;
-                background: linear-gradient(135deg, #047857 0%, #065f46 50%, #064e3b 100%);
+                background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             }
 
             .animated-bg {
@@ -44,14 +44,14 @@
             .orb {
                 position: absolute;
                 border-radius: 50%;
-                filter: blur(80px);
-                opacity: 0.4;
-                animation: float 20s infinite ease-in-out;
+                filter: blur(100px);
+                opacity: 0.25;
+                animation: float 25s infinite ease-in-out;
             }
 
-            .orb1 { width: 600px; height: 600px; background: linear-gradient(45deg, #10b981 0%, #34d399 100%); top: -15%; left: -15%; }
-            .orb2 { width: 500px; height: 500px; background: linear-gradient(45deg, #059669 0%, #10b981 100%); bottom: -15%; right: -15%; animation-delay: -5s; }
-            .orb3 { width: 400px; height: 400px; background: linear-gradient(45deg, #6ee7b7 0%, #34d399 100%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -10s; }
+            .orb1 { width: 700px; height: 700px; background: linear-gradient(45deg, #10b981 0%, #065f46 100%); top: -20%; left: -20%; }
+            .orb2 { width: 600px; height: 600px; background: linear-gradient(45deg, #059669 0%, #047857 100%); bottom: -20%; right: -20%; animation-delay: -8s; }
+            .orb3 { width: 500px; height: 500px; background: linear-gradient(45deg, #34d399 0%, #10b981 100%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -15s; }
 
             @keyframes float {
                 0%, 100% { transform: translate(0, 0) scale(1); }
@@ -59,7 +59,6 @@
                 66% { transform: translate(-30px, 30px) scale(0.9); }
             }
 
-            /* Animations */
             @keyframes fadeInUp {
                 from { opacity: 0; transform: translateY(30px); }
                 to { opacity: 1; transform: translateY(0); }
@@ -145,33 +144,19 @@
 
             .version-badge {
                 display: inline-block;
-                background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+                background: linear-gradient(135deg, #10b981, #059669);
                 backdrop-filter: blur(10px);
-                padding: 20px 50px;
+                padding: 16px 40px;
                 border-radius: 60px;
-                font-size: 1.8rem;
-                font-weight: 900;
+                font-size: 1.4rem;
+                font-weight: 800;
                 margin-bottom: 40px;
-                border: 3px solid rgba(255, 255, 255, 0.5);
-                box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5), 
-                            0 0 0 0 rgba(16, 185, 129, 0.7);
-                animation: fadeInUp 1.4s ease-out, glowPulse 2s ease-in-out infinite;
-                letter-spacing: 1px;
-                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            }
-
-            @keyframes glowPulse {
-                0%, 100% { 
-                    box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5), 
-                                0 0 30px rgba(16, 185, 129, 0.7),
-                                0 0 0 0 rgba(16, 185, 129, 0);
-                }
-                50% { 
-                    box-shadow: 0 20px 60px rgba(16, 185, 129, 0.7), 
-                                0 0 50px rgba(16, 185, 129, 1),
-                                0 0 0 10px rgba(16, 185, 129, 0);
-                    transform: scale(1.05);
-                }
+                border: 2px solid rgba(16, 185, 129, 0.5);
+                box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3), 
+                            0 0 50px rgba(16, 185, 129, 0.15);
+                animation: fadeInUp 1.4s ease-out;
+                letter-spacing: 0.5px;
+                color: #ffffff;
             }
 
             .download-section {
@@ -180,11 +165,10 @@
             }
 
             .download-title {
-                font-size: 2.5rem;
-                font-weight: 800;
+                font-size: 2rem;
+                font-weight: 700;
                 margin-bottom: 35px;
-                color: #ffffff;
-                text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+                color: rgba(255, 255, 255, 0.9);
             }
 
             .download-grid {
@@ -196,30 +180,31 @@
             }
 
             .download-btn {
-                padding: 20px 30px;
-                font-size: 1.1rem;
-                font-weight: 700;
-                background: rgba(255, 255, 255, 0.95);
-                color: #047857;
-                border: none;
-                border-radius: 25px;
+                padding: 15px 25px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                background: rgba(255, 255, 255, 0.05);
+                color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 10px;
+                gap: 8px;
+                backdrop-filter: blur(10px);
             }
 
             .download-btn:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-                background: #ffffff;
+                transform: translateY(-3px);
+                background: rgba(16, 185, 129, 0.2);
+                border-color: rgba(16, 185, 129, 0.4);
+                box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
             }
 
             .download-btn:active {
-                transform: translateY(-2px);
+                transform: translateY(-1px);
             }
 
             .os-icon {
@@ -227,21 +212,71 @@
                 height: 30px;
             }
 
-            /* Previous Versions Section */
             .previous-versions-section {
                 margin-top: 80px;
                 padding: 60px 20px;
-                background: rgba(0, 0, 0, 0.3);
+                background: rgba(0, 0, 0, 0.2);
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .features-section {
+                padding: 80px 20px;
+                background: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.03) 100%);
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+                max-width: 1000px;
+                margin: 40px auto 0;
+            }
+
+            .feature-card {
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 20px;
+                padding: 30px;
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+                background: rgba(16, 185, 129, 0.08);
+                border-color: rgba(16, 185, 129, 0.2);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            .feature-icon {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .feature-card h3 {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+                color: #ffffff;
+            }
+
+            .feature-card p {
+                font-size: 0.95rem;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 1.5;
             }
 
             .show-versions-btn {
-                background: rgba(255, 255, 255, 0.1);
+                background: rgba(16, 185, 129, 0.1);
                 backdrop-filter: blur(10px);
-                border: 2px solid rgba(255, 255, 255, 0.3);
-                color: white;
+                border: 1px solid rgba(16, 185, 129, 0.3);
+                color: #34d399;
                 padding: 15px 40px;
                 border-radius: 50px;
-                font-size: 1.1rem;
+                font-size: 1rem;
                 font-weight: 600;
                 cursor: pointer;
                 transition: all 0.3s ease;
@@ -251,9 +286,10 @@
             }
 
             .show-versions-btn:hover {
-                background: rgba(255, 255, 255, 0.2);
+                background: rgba(16, 185, 129, 0.2);
+                border-color: rgba(16, 185, 129, 0.5);
                 transform: translateY(-3px);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
             }
 
             .show-versions-btn svg {
@@ -277,9 +313,9 @@
             }
 
             .version-card {
-                background: rgba(255, 255, 255, 0.1);
+                background: rgba(255, 255, 255, 0.03);
                 backdrop-filter: blur(10px);
-                border: 2px solid rgba(255, 255, 255, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.08);
                 border-radius: 20px;
                 padding: 30px;
                 margin-bottom: 30px;
@@ -331,13 +367,13 @@
             }
 
             .version-download-btn {
-                padding: 15px 25px;
-                font-size: 1rem;
+                padding: 12px 20px;
+                font-size: 0.9rem;
                 font-weight: 600;
-                background: rgba(16, 185, 129, 0.2);
-                color: white;
-                border: 2px solid #10b981;
-                border-radius: 20px;
+                background: rgba(16, 185, 129, 0.1);
+                color: #34d399;
+                border: 1px solid rgba(16, 185, 129, 0.3);
+                border-radius: 16px;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 display: flex;
@@ -347,16 +383,16 @@
             }
 
             .version-download-btn:hover {
-                background: #10b981;
+                background: rgba(16, 185, 129, 0.25);
                 transform: translateY(-3px);
-                box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+                box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
             }
 
-            /* Footer */
             .footer {
-                background: rgba(0, 0, 0, 0.5);
+                background: rgba(0, 0, 0, 0.4);
                 padding: 50px 20px 30px;
                 margin-top: 80px;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
             }
 
             .footer-content {
@@ -369,13 +405,14 @@
             }
 
             .footer-section h4 {
-                color: #10b981;
+                color: #34d399;
                 margin-bottom: 15px;
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                font-weight: 600;
             }
 
             .footer-section p {
-                opacity: 0.7;
+                color: rgba(255, 255, 255, 0.5);
                 line-height: 1.6;
             }
 
@@ -400,7 +437,68 @@
                 fill: #10b981;
             }
 
-            /* Toast */
+            .whatsapp-contact {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 16px;
+                background: rgba(37, 211, 102, 0.1);
+                border: 1px solid rgba(37, 211, 102, 0.2);
+                border-radius: 12px;
+                text-decoration: none;
+                margin-bottom: 12px;
+                transition: all 0.3s ease;
+            }
+
+            .whatsapp-contact:hover {
+                background: rgba(37, 211, 102, 0.2);
+                transform: translateX(5px);
+                border-color: rgba(37, 211, 102, 0.4);
+            }
+
+            .whatsapp-logo {
+                width: 32px;
+                height: 32px;
+                flex-shrink: 0;
+            }
+
+            .contact-label {
+                color: #25D366;
+                font-weight: 600;
+                font-size: 0.85rem;
+            }
+
+            .contact-number {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.85rem;
+                margin-left: auto;
+            }
+
+            .email-contact {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 16px;
+                background: rgba(52, 211, 153, 0.1);
+                border: 1px solid rgba(52, 211, 153, 0.2);
+                border-radius: 12px;
+                text-decoration: none;
+                margin-bottom: 12px;
+                transition: all 0.3s ease;
+            }
+
+            .email-contact:hover {
+                background: rgba(52, 211, 153, 0.2);
+                transform: translateX(5px);
+                border-color: rgba(52, 211, 153, 0.4);
+            }
+
+            .email-logo {
+                width: 32px;
+                height: 32px;
+                flex-shrink: 0;
+            }
+
             #toast {
                 visibility: hidden;
                 min-width: 250px;
@@ -434,7 +532,6 @@
                 to { bottom: 0; opacity: 0; }
             }
 
-            /* Responsive */
             @media (max-width: 768px) {
                 .brand-name {
                     font-size: 2rem;
@@ -452,9 +549,27 @@
                     flex-direction: column;
                     align-items: flex-start;
                 }
+
+                .features-section {
+                    padding: 50px 15px;
+                }
+
+                .features-grid {
+                    grid-template-columns: 1fr;
+                    gap: 15px;
+                }
+
+                .previous-versions-section {
+                    margin-top: 40px;
+                    padding: 40px 15px;
+                }
+
+                .show-versions-btn {
+                    padding: 12px 30px;
+                    font-size: 1rem;
+                }
             }
 
-            /* Particles */
             #particles {
                 position: absolute;
                 width: 100%;
@@ -464,9 +579,9 @@
 
             .particle {
                 position: absolute;
-                width: 4px;
-                height: 4px;
-                background: rgba(255, 255, 255, 0.6);
+                width: 3px;
+                height: 3px;
+                background: rgba(16, 185, 129, 0.5);
                 border-radius: 50%;
                 animation: rise 15s infinite ease-in;
             }
@@ -483,6 +598,321 @@
                     bottom: 110%;
                     opacity: 0;
                 }
+            }
+
+            .cbt-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.85);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+
+            .cbt-modal.active {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .cbt-modal-content {
+                background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+                border-radius: 20px;
+                padding: 20px;
+                max-width: 380px;
+                width: 92%;
+                max-height: 88vh;
+                overflow-y: auto;
+                text-align: center;
+                transform: scale(0.85) translateY(30px);
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(16, 185, 129, 0.15);
+                position: relative;
+            }
+
+            .cbt-modal.active .cbt-modal-content {
+                transform: scale(1) translateY(0);
+            }
+
+            .cbt-modal-close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: rgba(255, 255, 255, 0.15);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: #fff;
+                font-size: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                line-height: 1;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .cbt-modal-close:hover {
+                background: rgba(239, 68, 68, 0.8);
+                border-color: rgba(239, 68, 68, 0.8);
+            }
+
+            .cbt-modal h2 {
+                background: linear-gradient(135deg, #10b981, #34d399);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-size: 2rem;
+                font-weight: 800;
+                margin-bottom: 8px;
+                letter-spacing: -0.5px;
+            }
+
+            .cbt-modal-subtitle {
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+                font-weight: 400;
+            }
+
+            .cbt-modal p {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.95rem;
+                line-height: 1.5;
+                margin-bottom: 25px;
+            }
+
+            .pricing-section {
+                margin-bottom: 25px;
+            }
+
+            .pricing-header {
+                display: inline-block;
+                background: linear-gradient(135deg, #f59e0b, #fbbf24);
+                color: #0f172a;
+                padding: 8px 20px;
+                border-radius: 30px;
+                font-size: 0.85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+            }
+
+            .pricing-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            @media (max-width: 500px) {
+                .pricing-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+
+                .cbt-modal-content {
+                    max-height: 88vh;
+                    overflow-y: auto;
+                    padding: 16px;
+                    padding-top: 20px;
+                }
+
+                .cbt-modal h2 {
+                    font-size: 1.5rem;
+                    margin-bottom: 4px;
+                }
+
+                .cbt-modal-subtitle {
+                    font-size: 0.8rem;
+                    margin-bottom: 12px;
+                }
+
+                .cbt-modal p {
+                    font-size: 0.85rem;
+                    margin-bottom: 16px;
+                }
+
+                .pricing-header {
+                    font-size: 0.75rem;
+                    padding: 6px 14px;
+                    margin-bottom: 12px;
+                }
+
+                .pricing-card {
+                    padding: 10px 4px;
+                }
+
+                .new-price {
+                    font-size: 1.1rem;
+                }
+
+                .original-price {
+                    font-size: 0.85rem;
+                }
+
+                .discount-badge {
+                    font-size: 0.6rem;
+                    padding: 2px 6px;
+                }
+
+                .pricing-section {
+                    margin-bottom: 16px;
+                }
+            }
+
+            .pricing-card {
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                padding: 12px 8px;
+                position: relative;
+                transition: all 0.3s ease;
+            }
+
+            .pricing-card:hover {
+                transform: translateY(-3px);
+                border-color: rgba(255, 255, 255, 0.15);
+            }
+
+            .pricing-card.recommended {
+                background: linear-gradient(145deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+                border: 2px solid #10b981;
+                box-shadow: 0 8px 30px rgba(16, 185, 129, 0.2);
+            }
+
+            .recommended-badge {
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, #10b981, #34d399);
+                color: #0f172a;
+                font-size: 0.55rem;
+                font-weight: 800;
+                padding: 3px 10px;
+                border-radius: 20px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                box-shadow: 0 3px 10px rgba(16, 185, 129, 0.4);
+            }
+
+            .plan-name {
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+            }
+
+            .pricing-card.recommended .plan-name {
+                color: #34d399;
+            }
+
+            .original-price {
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 1rem;
+                text-decoration: line-through;
+                font-weight: 500;
+            }
+
+            .new-price {
+                color: #ffffff;
+                font-size: 1.3rem;
+                font-weight: 800;
+                margin: 4px 0;
+                line-height: 1;
+            }
+
+            .pricing-card.recommended .new-price {
+                color: #34d399;
+            }
+
+            .discount-badge {
+                display: inline-block;
+                background: rgba(239, 68, 68, 0.2);
+                color: #f87171;
+                font-size: 0.7rem;
+                font-weight: 700;
+                padding: 3px 10px;
+                border-radius: 12px;
+                margin-top: 8px;
+            }
+
+            .pricing-card.recommended .discount-badge {
+                background: rgba(16, 185, 129, 0.2);
+                color: #34d399;
+            }
+
+            .per-month {
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 0.7rem;
+                font-weight: 500;
+                margin-top: 5px;
+            }
+
+            .cta-section {
+                margin-top: 25px;
+            }
+
+            .cbt-modal-btn {
+                background: linear-gradient(135deg, #10b981, #059669);
+                color: #ffffff;
+                border: none;
+                padding: 16px 45px;
+                font-size: 1.05rem;
+                font-weight: 700;
+                border-radius: 50px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .cbt-modal-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .cbt-modal-btn:hover::before {
+                left: 100%;
+            }
+
+            .cbt-modal-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 35px rgba(16, 185, 129, 0.5);
+            }
+
+            .limited-time {
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.75rem;
+                margin-top: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+            }
+
+            .limited-time svg {
+                width: 14px;
+                height: 14px;
+                fill: #f59e0b;
             }
         </style>
     </head>
@@ -506,7 +936,7 @@
                 <h1>Your ABU Campus Companion</h1>
                 <p class="subtitle">Navigate, Learn, and Collaborate with Ease</p>
 
-                <div class="version-badge">⚡ Version 2.0.1 - Latest Release</div>
+                <div class="version-badge"> Version 2.0.1 - Latest Release</div>
 
                 <div class="download-section">
                     <h2 class="download-title">Download Limlo 2.0.1</h2>
@@ -537,14 +967,67 @@
                         </button>
                     </div>
                 </div>
+
+                <div class="download-section" style="margin-top: 30px;">
+                    <h2 class="download-title" style="font-size: 1.5rem; margin-bottom: 20px;">  Coming Soon: Limlo CBT</h2>
+                    <div class="download-grid">
+                        <button class="download-btn" onclick="openCbtPopup()">
+                            <svg class="os-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            View Pricing
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Previous Versions Section -->
+        <div class="features-section">
+            <h2 style="text-align: center; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700; color: rgba(255, 255, 255, 0.9);">Everything You Need on Campus</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="#10b981">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <h3>Campus Navigation</h3>
+                    <p>Find your way around ABU with ease. Locate classrooms, offices, and facilities quickly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="#10b981">
+                            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                        </svg>
+                    </div>
+                    <h3>Study Resources</h3>
+                    <p>Access course materials, past questions, and collaborative study tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="#10b981">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>AI Campus Assistant</h3>
+                    <p>An AI that knows you, is smart, and can point you to locations on the Limlo map.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="#10b981">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
+                        </svg>
+                    </div>
+                    <h3>Stay Updated</h3>
+                    <p>Never miss important campus events, deadlines, or announcements.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="previous-versions-section">
             <div style="text-align: center;">
                 <button class="show-versions-btn" onclick="toggleVersions()">
-                    <span id="toggleText">View Previous Versions</span>
+                    <span id="toggleText">Get Limlo</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
@@ -552,12 +1035,46 @@
             </div>
 
             <div class="versions-container" id="versionsContainer">
-                <!-- Version 2.0.0 -->
+                <div class="version-card">
+                    <div class="version-header">
+                        <div>
+                            <div class="version-number">Version 2.0.1</div>
+                            <div class="version-date">Released: March 2026</div>
+                        </div>
+                    </div>
+                    <div class="version-downloads">
+                        <button class="version-download-btn" onclick="window.location.href='https://github.com/ahmedisiaka/limlostore/releases/download/version2/limloandriodv2.0.1.apk'">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993 0 .5511-.4483.9997-.9993.9997m11.4045-6.02l1.9973-3.4723a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4723C2.61 10.9871.8527 13.9973.8527 17.4037c0 .044.0029.0866.0047.1294h22.2852c.0018-.0427.0046-.0853.0046-.1294 0-3.4064-1.7573-6.4166-5.2652-8.0623M6.9822 17.4037c-.7323 0-1.3262-.594-1.3262-1.3263s.594-1.3263 1.3262-1.3263c.7322 0 1.3262.594 1.3262 1.3263s-.594 1.3263-1.3262 1.3263m10.0356 0c-.7322 0-1.3262-.594-1.3262-1.3263s.594-1.3263 1.3262-1.3263c.7322 0 1.3262.594 1.3262 1.3263s-.5939 1.3263-1.3262 1.3263"/>
+                            </svg>
+                            Android
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                            </svg>
+                            iOS
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            Web
+                        </button>
+                        <button class="version-download-btn" onclick="showToast()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                            </svg>
+                            Windows
+                        </button>
+                    </div>
+                </div>
+
                 <div class="version-card">
                     <div class="version-header">
                         <div>
                             <div class="version-number">Version 2.0.0</div>
-                            <div class="version-date">Released: Februray 2026</div>
+                            <div class="version-date">Released: February 2026</div>
                         </div>
                     </div>
                     <div class="version-downloads">
@@ -588,7 +1105,6 @@
                     </div>
                 </div>
 
-                <!-- Version 1.0.2 -->
                 <div class="version-card">
                     <div class="version-header">
                         <div>
@@ -628,6 +1144,52 @@
 
         <div id="toast">Coming Soon</div>
 
+        <div class="cbt-modal" id="cbtModal">
+            <div class="cbt-modal-content">
+                <button class="cbt-modal-close" onclick="closeCbtPopup()">&times;</button>
+                <h2>Limlo CBT</h2>
+                <p class="cbt-modal-subtitle">Your ABU Exam Prep Companion</p>
+                <p>Prepare smarter, not harder. Join the waitlist today and lock in exclusive launch discounts!</p>
+                
+                <div class="pricing-section">
+                    <div class="pricing-header">Waitlist Exclusive</div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="plan-name">Free</div>
+                            <div class="new-price">₦0</div>
+                            <span class="discount-badge">100% FREE</span>
+                            <div class="per-month">per month</div>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="plan-name">Standard</div>
+                            <div class="original-price">₦1,500</div>
+                            <div class="new-price">₦1,200</div>
+                            <span class="discount-badge">20% OFF</span>
+                            <div class="per-month">per month</div>
+                        </div>
+                        <div class="pricing-card recommended">
+                            <div class="recommended-badge">★ Recommended</div>
+                            <div class="plan-name">Pro</div>
+                            <div class="original-price">₦3,000</div>
+                            <div class="new-price">₦2,500</div>
+                            <span class="discount-badge">₦500 OFF</span>
+                            <div class="per-month">per month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <button class="cbt-modal-btn" onclick="window.location.href='https://limlo-cbt-waitlist.vercel.app/'">
+                        Claim Your Spot
+                    </button>
+                    <div class="limited-time">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        Limited spots available at this price
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-section">
@@ -636,25 +1198,33 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact Us</h4>
-                    <a href="https://wa.me/2347079776336" class="contact-item" target="_blank">
-                        <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2 22L7.22 20.64C8.66 21.42 10.3 21.82 12.03 21.82C17.49 21.82 21.94 17.37 21.94 11.91C21.94 6.45 17.49 2 12.04 2Z"/></svg>
-                        +234 707 977 6336
+                    <a href="https://wa.me/2347018663493" class="whatsapp-contact" target="_blank">
+                        <svg class="whatsapp-logo" viewBox="0 0 24 24" fill="#25D366">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        <span class="contact-label">WhatsApp Us</span>
+                        <span class="contact-number">+234 701 866 3493</span>
                     </a>
-                    <a href="https://wa.me/2348136479353" class="contact-item" target="_blank">
-                        <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2 22L7.22 20.64C8.66 21.42 10.3 21.82 12.03 21.82C17.49 21.82 21.94 17.37 21.94 11.91C21.94 6.45 17.49 2 12.04 2Z"/></svg>
-                        +234 813 647 9353
+                    <a href="https://wa.me/2348136479353" class="whatsapp-contact" target="_blank">
+                        <svg class="whatsapp-logo" viewBox="0 0 24 24" fill="#25D366">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        <span class="contact-label">WhatsApp Us</span>
+                        <span class="contact-number">+234 813 647 9353</span>
                     </a>
-                    <a href="mailto:ahmeddosumu1@gmail.com" class="contact-item">
-                        <svg class="email-icon" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
-                        ahmeddosumu1@gmail.com
+                    <a href="/cdn-cgi/l/email-protection#dabbb2b7bfbebeb5a9afb7afeb9abdb7bbb3b6f4b9b5b7" class="email-contact">
+                        <svg class="email-logo" viewBox="0 0 24 24" fill="#34d399">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span class="contact-label">Email Us</span>
+                        <span class="contact-number"><span class="__cf_email__" data-cfemail="d8b9b0b5bdbcbcb7abadb5ade998bfb5b9b1b4f6bbb7b5">[email&#160;protected]</span></span>
                     </a>
                 </div>
             </div>
             <p style="text-align: center; color: rgba(255,255,255,0.4); margin-top: 30px; font-size: 0.8rem;">&copy; 2026 Limlo. All rights reserved.</p>
         </footer>
 
-        <script>
-            // Particles Animation
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
             const container = document.getElementById('particles');
             for (let i = 0; i < 40; i++) {
                 const p = document.createElement('div');
@@ -664,7 +1234,6 @@
                 container.appendChild(p);
             }
 
-            // Toggle Previous Versions
             function toggleVersions() {
                 const container = document.getElementById('versionsContainer');
                 const button = document.querySelector('.show-versions-btn');
@@ -674,19 +1243,38 @@
                 button.classList.toggle('active');
                 
                 if (container.classList.contains('show')) {
-                    toggleText.textContent = 'Hide Previous Versions';
+                    toggleText.textContent = 'Hide';
                 } else {
-                    toggleText.textContent = 'View Previous Versions';
+                    toggleText.textContent = 'Get Limlo';
                 }
             }
 
-            // Toast Function
             function showToast() {
                 var x = document.getElementById("toast");
                 x.textContent = "Coming Soon";
                 x.className = "show";
                 setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
             }
+
+            const cbtModal = document.getElementById('cbtModal');
+
+            function openCbtPopup() {
+                cbtModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeCbtPopup() {
+                cbtModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            cbtModal.addEventListener('click', function(e) {
+                if (e.target === cbtModal) closeCbtPopup();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeCbtPopup();
+            });
+
+            setTimeout(openCbtPopup, 1500);
         </script>
-    </body>
-</html>
