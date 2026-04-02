@@ -909,11 +909,77 @@
                 gap: 6px;
             }
 
-            .limited-time svg {
-                width: 14px;
-                height: 14px;
-                fill: #f59e0b;
+            .waitlist-notice {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                background: rgba(245, 158, 11, 0.12);
+                border: 1px solid rgba(245, 158, 11, 0.35);
+                border-radius: 10px;
+                padding: 10px 14px;
+                font-size: 0.78rem;
+                font-weight: 600;
+                color: #fbbf24;
+                margin-bottom: 16px;
+                line-height: 1.4;
             }
+
+            .waitlist-notice svg {
+                width: 16px;
+                height: 16px;
+                fill: #fbbf24;
+                flex-shrink: 0;
+            }
+
+            .plan-icon {
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 10px;
+            }
+
+            .plan-icon svg { width: 20px; height: 20px; }
+
+            .plan-icon--free { background: rgba(16, 185, 129, 0.15); }
+            .plan-icon--free svg { fill: #10b981; }
+
+            .plan-icon--standard { background: rgba(99, 102, 241, 0.15); }
+            .plan-icon--standard svg { fill: #818cf8; }
+
+            .plan-icon--pro { background: rgba(234, 179, 8, 0.15); }
+            .plan-icon--pro svg { fill: #facc15; }
+
+            .pricing-card--pro {
+                border: 2px solid #ca8a04;
+                box-shadow: 0 0 18px rgba(202, 138, 4, 0.3), 0 0 6px rgba(250, 204, 21, 0.15);
+                background: linear-gradient(145deg, rgba(202, 138, 4, 0.08), rgba(15, 23, 42, 0.9));
+                padding-top: 22px;
+            }
+
+            .pro-recommended-badge {
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, #ca8a04, #facc15);
+                color: #0f172a;
+                font-size: 0.52rem;
+                font-weight: 800;
+                padding: 3px 10px;
+                border-radius: 20px;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                white-space: nowrap;
+                box-shadow: 0 3px 10px rgba(202, 138, 4, 0.5);
+            }
+
+            .pro-price { color: #facc15 !important; }
+            .pricing-card--pro .plan-name { color: #fde68a; }
+            
         </style>
     </head>
     <body>
@@ -969,13 +1035,13 @@
                 </div>
 
                 <div class="download-section" style="margin-top: 30px;">
-                    <h2 class="download-title" style="font-size: 1.5rem; margin-bottom: 20px;">  Coming Soon: Limlo CBT</h2>
+                    <h2 class="download-title" style="font-size: 1.5rem; margin-bottom: 20px;">Try Limlo CBT</h2>
                     <div class="download-grid">
-                        <button class="download-btn" onclick="openCbtPopup()">
+                        <button class="download-btn" onclick="window.location.href='https://limcbt.vercel.app'">
                             <svg class="os-icon" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                             </svg>
-                            View Pricing
+                            Try Limlo CBT
                         </button>
                     </div>
                 </div>
@@ -1149,46 +1215,55 @@
                 <button class="cbt-modal-close" onclick="closeCbtPopup()">&times;</button>
                 <h2>Limlo CBT</h2>
                 <p class="cbt-modal-subtitle">Your ABU Exam Prep Companion</p>
-                <p>Prepare smarter, not harder. Join the waitlist today and lock in exclusive launch discounts!</p>
+                <p>Prepare smarter, not harder,unlock your ful potential with limlo CBT</p>
                 
                 <div class="pricing-section">
-                    <div class="pricing-header">Waitlist Exclusive</div>
+                    <div class="waitlist-notice">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+                      Discounts are exclusive to waitlist members only
+                    </div>
                     <div class="pricing-grid">
                         <div class="pricing-card">
+                            <div class="plan-icon plan-icon--free">
+                                <!-- Sprout / seedling for Free -->
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-13 6 1-2 2.5-4 5-5z"/></svg>
+                            </div>
                             <div class="plan-name">Free</div>
                             <div class="new-price">₦0</div>
-                            <span class="discount-badge">100% FREE</span>
                             <div class="per-month">per month</div>
                         </div>
                         <div class="pricing-card">
+                            <div class="plan-icon plan-icon--standard">
+                                <!-- Star for Standard -->
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </div>
                             <div class="plan-name">Standard</div>
-                            <div class="original-price">₦1,500</div>
-                            <div class="new-price">₦1,200</div>
-                            <span class="discount-badge">20% OFF</span>
+                            <div class="new-price">₦1,500</div>
                             <div class="per-month">per month</div>
                         </div>
-                        <div class="pricing-card recommended">
-                            <div class="recommended-badge">★ Recommended</div>
+                        <div class="pricing-card pricing-card--pro">
+                            <div class="pro-recommended-badge">★ Recommended</div>
+                            <div class="plan-icon plan-icon--pro">
+                                <!-- Diamond for Pro -->
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5L2 9l10 12L22 9l-3-6zm-8.5 9.5l-3-3.5h2l1.5 1.75L12.5 9H14l-3 3.5zM5.66 9l1.5-4h9.68l1.5 4H5.66z"/></svg>
+                            </div>
                             <div class="plan-name">Pro</div>
-                            <div class="original-price">₦3,000</div>
-                            <div class="new-price">₦2,500</div>
-                            <span class="discount-badge">₦500 OFF</span>
+                            <div class="new-price pro-price">₦3,000</div>
                             <div class="per-month">per month</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="cta-section">
-                    <button class="cbt-modal-btn" onclick="window.location.href='https://limlo-cbt-waitlist.vercel.app/'">
-                        Claim Your Spot
+                    <button class="cbt-modal-btn" onclick="window.location.href='https://limcbt.vercel.app'">
+                        Try Limlo CBT
                     </button>
                     <div class="limited-time">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                        Limited spots available at this price
                     </div>
                 </div>
             </div>
         </div>
+    </body>
 
         <footer class="footer">
             <div class="footer-content">
@@ -1212,13 +1287,14 @@
                         <span class="contact-label">WhatsApp Us</span>
                         <span class="contact-number">+234 813 647 9353</span>
                     </a>
-                    <a href="/cdn-cgi/l/email-protection#dabbb2b7bfbebeb5a9afb7afeb9abdb7bbb3b6f4b9b5b7" class="email-contact">
-                        <svg class="email-logo" viewBox="0 0 24 24" fill="#34d399">
-                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                        <span class="contact-label">Email Us</span>
-                        <span class="contact-number"><span class="__cf_email__" data-cfemail="d8b9b0b5bdbcbcb7abadb5ade998bfb5b9b1b4f6bbb7b5">[email&#160;protected]</span></span>
-                    </a>
+                    <a href="mailto:ahmeddosumu1@gmail.com" class="email-contact">
+    <svg class="email-logo" viewBox="0 0 24 24" fill="#34d399">
+        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </svg>
+    <span class="contact-label">Email Us</span>
+    <span class="contact-number">ahmeddosumu1@gmail.com</span>
+</a>
+
                 </div>
             </div>
             <p style="text-align: center; color: rgba(255,255,255,0.4); margin-top: 30px; font-size: 0.8rem;">&copy; 2026 Limlo. All rights reserved.</p>
@@ -1278,3 +1354,4 @@
 
             setTimeout(openCbtPopup, 1500);
         </script>
+</html>
